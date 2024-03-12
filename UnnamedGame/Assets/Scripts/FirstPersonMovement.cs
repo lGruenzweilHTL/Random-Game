@@ -18,8 +18,6 @@ public class FirstPersonMovement : MonoBehaviour
 
     [Space, SerializeField] private AudioClip footstepSound;
     [SerializeField] private float footstepDelay = 0.3f;
-    [SerializeField] private float cameraWiggleTime = 0.1f;
-    [SerializeField] private float cameraWiggleOffset = 0.1f;
 
     #endregion
 
@@ -76,8 +74,9 @@ public class FirstPersonMovement : MonoBehaviour
         controller.Move(speed * Time.deltaTime * move);
         controller.Move(Time.deltaTime * yMovement * transform.up);
 
-        if (isGrounded && input.magnitude > 0 && footstepSound != null) // play footsteps
+        if (isGrounded && input.magnitude > 0 && footstepSound != null)
         {
+            // play footsteps
             nextFootstep -= Time.deltaTime;
             if (nextFootstep <= 0)
             {
@@ -94,9 +93,7 @@ public class FirstPersonMovement : MonoBehaviour
         xRotation -= MouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        Vector3 newXRot = cameraTransform.localRotation.eulerAngles;
-        newXRot.x = xRotation;
-        cameraTransform.localRotation = Quaternion.Euler(newXRot);
+        cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * MouseX);
     }
     private void OnDrawGizmosSelected()
