@@ -158,8 +158,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8390621727101976496}
-  - {fileID: 4683566934137560326}
   - {fileID: 4496863661518467601}
+  - {fileID: 4683566934137560326}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-2447475546522735811
@@ -183,8 +183,11 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 8
-  footstepSound: {fileID: 0}
-  footstepDelay: 0.3
+  footstepSound: {fileID: 8300000, guid: 518f5da3963c85c499ed6ec19a40162e, type: 3}
+  footstepDelay: 0.5
+  shakeDuration: 0.3
+  shakeDistance: 3
+  shakeDelay: 1
 --- !u!143 &815095087845437258
 CharacterController:
   m_ObjectHideFlags: 0
@@ -222,7 +225,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -334,13 +337,13 @@ Transform:
   m_GameObject: {fileID: 5317255801696677026}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7379999, z: 0}
+  m_LocalPosition: {x: 0, y: 0.697, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4298913516673742690}
   m_Father: {fileID: 5505144397715167112}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.86, y: 0, z: 0}
 --- !u!20 &4837161092311457368
 Camera:
   m_ObjectHideFlags: 0

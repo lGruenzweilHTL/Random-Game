@@ -1,3 +1,4 @@
+using FirstGearGames.SmoothCameraShaker;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController), typeof(AudioSource))]
@@ -19,22 +20,20 @@ public class FirstPersonMovement : MonoBehaviour
     [Space, SerializeField] private AudioClip footstepSound;
     [SerializeField] private float footstepDelay = 0.3f;
 
+    [Space, SerializeField] private ShakeData cameraShakeData;
+
     #endregion
 
     #region Variables
 
     private CharacterController controller;
     private AudioSource footstepAudioSource;
-
     private Vector2 input;
-
     private float yMovement;
-
     private float nextFootstep = 0;
-
     private bool isGrounded;
-
     private float xRotation = 0f;
+    private bool cameraShakeActive = false;
 
     #endregion
 
@@ -82,11 +81,14 @@ public class FirstPersonMovement : MonoBehaviour
             {
                 footstepAudioSource.PlayOneShot(footstepSound, 0.7f);
                 nextFootstep += footstepDelay;
+                CameraShakerHandler.Shake(cameraShakeData);
             }
         }
     }
     void HandleLooking()
     {
+        if (cameraShakeActive) return;
+
         float MouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float MouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
