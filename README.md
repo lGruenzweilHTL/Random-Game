@@ -1,2 +1,4 @@
-# Random-Game
-a random game with no name yet 
+# Lock the Door.
+In "Lock the Door" findet sich der Spieler in der Rolle eines Kindes wieder, dessen Eltern überraschend über Nacht weggezogen sind, ihm jedoch eine mysteriöse Notiz hinterlassen haben. In einer Stadt, die von einer Einbruchswelle heimgesucht wird, fordern die Eltern den Spieler auf, jede Nacht die Türen, Fenster, die Messer im Haus zu versteckenund und viele andere Sicherheitsvorkehrungen zu aktivieren beziehungsweise zu schließen/aktivieren, um sich vor den Einbrechern zu schützen. Das Spiel wiederholt sich, wobei der Spieler jede Nacht erneut versuchen muss, die Sicherheitsvorkehrungen zu treffen, um das Eindringen der Einbrecher zu verhindern.
+
+Scheitert der Spieler jedoch, wird er mit einem unheimlichen Jumpscare konfrontiert, wenn der Einbrecher während der Nacht in sein Zimmer eindringt. Der Spieler muss sein Bestes geben, um in diesem nervenaufreibenden Überlebensspiel zu bestehen und sich gegen die düsteren Bedrohungen der Nacht zu verteidigen.
