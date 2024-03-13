@@ -2,11 +2,25 @@ using System.Collections;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseSystem : MonoBehaviour
 {
-    private void OnApplicationFocus(bool focus)
+    public static PauseSystem Instance;
+    public GameObject Crosshair;
+    private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+        private void OnApplicationFocus(bool focus)
+        {
         if (!focus) Pause();
     }
 
@@ -15,7 +29,7 @@ public class PauseSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !SelectionManager.Instance.isClipBoardOpen)
         {
             TogglePause();
         }
@@ -25,6 +39,7 @@ public class PauseSystem : MonoBehaviour
     {
         Time.timeScale = 0f;
         PauseObject.SetActive(true);
+        Crosshair.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
 
         IsPaused = true;
@@ -33,6 +48,7 @@ public class PauseSystem : MonoBehaviour
     {
         Time.timeScale = 1f;
         PauseObject.SetActive(false);
+        Crosshair.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
 
         IsPaused = false;
