@@ -5,17 +5,6 @@ using UnityEngine;
 
 public class PauseSystem : MonoBehaviour
 {
-    #region Singleton Reference
-
-    public PauseSystem Instance { get; private set; }
-    private void Awake()
-    {
-        if (Instance != null && Instance != this) Destroy(this);
-        else Instance = this;
-    }
-
-    #endregion
-
     private void OnApplicationFocus(bool focus)
     {
         if (!focus) Pause();
