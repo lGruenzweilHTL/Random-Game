@@ -53,7 +53,8 @@ public class FirstPersonMovement : MonoBehaviour
 
     void HandleMoving()
     {
-        isGrounded = Physics.CheckSphere(groundCheckTransform.position, groundCheckDistance, groundLayers);
+        Vector3 groundExtents = new Vector3(transform.localScale.x, groundCheckDistance, transform.localScale.z) / 2;
+        isGrounded = Physics.CheckBox(groundCheckTransform.position, groundExtents);
 
         if (isGrounded && yMovement < 0) // reset gravity when on the ground
         {
@@ -97,10 +98,5 @@ public class FirstPersonMovement : MonoBehaviour
 
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * MouseX);
-    }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(groundCheckTransform.position, groundCheckDistance);
     }
 }

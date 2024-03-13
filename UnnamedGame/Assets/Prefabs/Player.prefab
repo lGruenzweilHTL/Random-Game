@@ -50,7 +50,7 @@ Light:
   m_InnerSpotAngle: 1
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -81,7 +81,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 63
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -185,9 +185,7 @@ MonoBehaviour:
     m_Bits: 8
   footstepSound: {fileID: 8300000, guid: 518f5da3963c85c499ed6ec19a40162e, type: 3}
   footstepDelay: 0.5
-  shakeDuration: 0.3
-  shakeDistance: 3
-  shakeDelay: 1
+  cameraShakeData: {fileID: 11400000, guid: de0d8807e573da54094de0873ac0b2ca, type: 2}
 --- !u!143 &815095087845437258
 CharacterController:
   m_ObjectHideFlags: 0
@@ -321,6 +319,7 @@ GameObject:
   - component: {fileID: 4683566934137560326}
   - component: {fileID: 4837161092311457368}
   - component: {fileID: 3364099458413803164}
+  - component: {fileID: 5988533064074810573}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -403,6 +402,23 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5317255801696677026}
   m_Enabled: 1
+--- !u!114 &5988533064074810573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5317255801696677026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shakeTechnique: 0
+  _makeDefaultOnEnable: 1
+  _limitMagnitude: 0
+  _positionalMagnitudeLimit: 10
+  _rotationalMagnitudeLimit: 3
 --- !u!1 &6352893902707484664
 GameObject:
   m_ObjectHideFlags: 0
