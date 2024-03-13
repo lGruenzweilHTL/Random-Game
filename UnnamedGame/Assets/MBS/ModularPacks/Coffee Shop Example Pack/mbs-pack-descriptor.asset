@@ -1,0 +1,228 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!49 &4900000
+TextAsset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mbs-pack-descriptor
+  m_Script: "{\n    \"guid\": \"c7799a98c38a4ccf9a132ad11dfe187b\",\n    \"_name\":
+    \"Coffee Shop Example Pack\",\n    \"_wallGroups\": [\n        {\n           
+    \"guid\": \"ab0841eb0c2b4cc6a42634a714b37757\",\n            \"name\": \"Wall
+    Group 1\",\n            \"_modules\": [\n                {\n                   
+    \"guid\": \"719253436a4046759abbe063e89726bb\",\n                    \"name\":
+    \"Solid\",\n                    \"prefabs\": [\n                        {\n                           
+    \"fileID\": 7726862700073652533,\n                            \"guid\": \"9de2496e7a5f5ae41b543330ea8dab15\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"d7d39923a3d749f3a731f3f65eb83e4b\",\n                   
+    \"name\": \"Window\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 3466943587159078440,\n                           
+    \"guid\": \"c0228a7a743dfee43b2381e6eb1f2be7\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"a12be5574fa649809acaee6fbb698e10\",\n                   
+    \"name\": \"Door\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 7443954822017787150,\n                           
+    \"guid\": \"1594b6dd197757d438b22b03efd47041\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"e02bad7a34b5438bbe08125838a54158\",\n                   
+    \"name\": \"New Wall Module\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 919132149155446097,\n                           
+    \"guid\": \"dd41abc040aa57d449592ae5a29ec2c8\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    }\n            ]\n        },\n        {\n            \"guid\": \"7d3d6f6894084f8a8e44b8d147fa36bf\",\n           
+    \"name\": \"Roof Wall\",\n            \"_modules\": [\n                {\n                   
+    \"guid\": \"18d668fd512b485b9d9778100c8caae0\",\n                    \"name\":
+    \"New Wall Module\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 5276729755987282141,\n                           
+    \"guid\": \"1649879ee516b8e4f917c54da89754a8\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    }\n            ]\n        },\n        {\n            \"guid\": \"765378242d144f5398c6f7d6c6dbd3ac\",\n           
+    \"name\": \"Billboard\",\n            \"_modules\": [\n                {\n                   
+    \"guid\": \"5929af41a0f14181b59c17235bf59754\",\n                    \"name\":
+    \"Billboard\",\n                    \"prefabs\": [\n                        {\n                           
+    \"fileID\": 5091194365281148028,\n                            \"guid\": \"fc1f1294f6087554288e1d40b8e2a6ad\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    }\n            ]\n        },\n        {\n            \"guid\": \"90656b13cfc249a3b8d3556479fa05b5\",\n           
+    \"name\": \"Decorative wall\",\n            \"_modules\": [\n               
+    {\n                    \"guid\": \"62bfdecff2534bb9babef49102e93dc6\",\n                   
+    \"name\": \"Decorative wall\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 6891821700055277549,\n                           
+    \"guid\": \"218df648df87a3641bb47f0c6656b17c\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    }\n            ]\n        },\n        {\n            \"guid\": \"b14691bb596f41b3b011bcdf04878c7f\",\n           
+    \"name\": \"WorkTable\",\n            \"_modules\": [\n                {\n                   
+    \"guid\": \"c3964b3767ce4aa89515dcd4405cf1e1\",\n                    \"name\":
+    \"New Wall Module\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 7596900490272752505,\n                           
+    \"guid\": \"efa1cfa5ecf9f834fa862ce6854a315a\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"instanceID\": 0\n                        }\n                    ]\n               
+    }\n            ]\n        }\n    ],\n    \"_floorGroups\": [\n        {\n           
+    \"guid\": \"61dc31604c3c4152b61484ea41803411\",\n            \"name\": \"Outer\",\n           
+    \"_modules\": [\n                {\n                    \"guid\": \"eca12c1cd13244bfbde72fc04cc97d09\",\n                   
+    \"name\": \"Solid\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 4908351553809621268,\n                           
+    \"guid\": \"83bc02582eb98544293b951e3f9f311b\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"fileID\": 4627372203300269099,\n                            \"guid\": \"27bfb013b882e4c468ed0088bbd393dc\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"ac84be34ca6540b98b275a3425467676\",\n                   
+    \"name\": \"Line\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 9203984893890251414,\n                           
+    \"guid\": \"b105126f75607924084ed3353eee1dea\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"fileID\": 4627372203300269099,\n                            \"guid\": \"27bfb013b882e4c468ed0088bbd393dc\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"c75cd4698f6445089e8c1dd401bc8f1c\",\n                   
+    \"name\": \"Tee\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 4630791036723285448,\n                           
+    \"guid\": \"754c7d695e720694ab88571508d51591\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"fileID\": 4627372203300269099,\n                            \"guid\": \"27bfb013b882e4c468ed0088bbd393dc\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"33c14259ac344bab93837329378db894\",\n                   
+    \"name\": \"Corner\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 1433983253157292645,\n                           
+    \"guid\": \"12e65016b156cff4ea7398169ce53f1c\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"fileID\": 4627372203300269099,\n                            \"guid\": \"27bfb013b882e4c468ed0088bbd393dc\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    }\n            ]\n        },\n        {\n            \"guid\": \"d194447eb296491cbd0000d6f2bea8e4\",\n           
+    \"name\": \"Inner\",\n            \"_modules\": [\n                {\n                   
+    \"guid\": \"8d4b73c920cf4f71aa2b0ebb8b68b14c\",\n                    \"name\":
+    \"New Floor Module\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 5086288628050464557,\n                           
+    \"guid\": \"a4d3c5447ed2edf4e983f3f38c2405df\",\n                           
+    \"type\": 3\n                        },\n                        {\n                           
+    \"fileID\": 4775304968018474999,\n                            \"guid\": \"9acadc3878038344f8bf3bf46836078e\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    }\n            ]\n        }\n    ],\n    \"_decoratorGroups\": [\n        {\n           
+    \"guid\": \"57358d56a68e428397dfcf931eea0120\",\n            \"name\": \"Bar
+    Furniture\",\n            \"_modules\": [\n                {\n                   
+    \"guid\": \"ed526f62a5e54fb7b82fd268f4825e03\",\n                    \"name\":
+    \"Table\",\n                    \"prefabs\": [\n                        {\n                           
+    \"fileID\": 8054835873711757783,\n                            \"guid\": \"00c4a3c91106f094eb0b027a80a650b1\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"0bea3823788f47488a9d2c30cce42e7a\",\n                   
+    \"name\": \"Seat\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 520099513937973821,\n                           
+    \"guid\": \"afe00ad10bab5da488243e129cc51132\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    }\n            ],\n            \"_assetCategoryGuid\": \"c04ffa89f3c74b12b4eb1170dec69946\"\n       
+    },\n        {\n            \"guid\": \"aba76e1b78a646988205c4aefd9ed1e9\",\n           
+    \"name\": \"Dining Furniture Group\",\n            \"_modules\": [\n               
+    {\n                    \"guid\": \"146751f715df4e779546ab8130b62cf4\",\n                   
+    \"name\": \"Table\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 3368094977301562760,\n                           
+    \"guid\": \"07b7b317529f3024fbba7e98883d935d\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"27ef3c924d854e099281a4f7779051da\",\n                   
+    \"name\": \"Chair\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 65981912186593515,\n                           
+    \"guid\": \"747d4fd9f0ed9e443a8aa5d3f9475e21\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    }\n            ],\n            \"_assetCategoryGuid\": \"c04ffa89f3c74b12b4eb1170dec69946\"\n       
+    },\n        {\n            \"guid\": \"8b3ceeea79b74933a9c91a51975f90a7\",\n           
+    \"name\": \"\u0421offee Making Equipment\",\n            \"_modules\": [\n               
+    {\n                    \"guid\": \"517125aa4eba4a2a8bc1b2ead0c7c471\",\n                   
+    \"name\": \"Coffee Machine\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 7941711530556131053,\n                           
+    \"guid\": \"1d071a05d1312d14980f318843a75082\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"963a8bb164bb41de90be89b835374d85\",\n                   
+    \"name\": \"Coffee Grinder\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 7455677863048568667,\n                           
+    \"guid\": \"992e253873520e5469dba938318801e0\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"62a790bfe3954a959774afef8ae5962f\",\n                   
+    \"name\": \"Milk Pitcher\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 8974090344815163648,\n                           
+    \"guid\": \"747326d7535686345bbd6125a409d266\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    }\n            ],\n            \"_assetCategoryGuid\": \"c04ffa89f3c74b12b4eb1170dec69946\"\n       
+    },\n        {\n            \"guid\": \"76a0b7dc8eed449bbf023a534485489b\",\n           
+    \"name\": \"Refrigirators\",\n            \"_modules\": [\n                {\n                   
+    \"guid\": \"9db7403ab6f44d4b98c0c5b025f583c7\",\n                    \"name\":
+    \"Refrigirator\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 5137362193941612301,\n                           
+    \"guid\": \"45429c66cb8f7364fbb43bb5bac80085\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"ec21cfc069434dcfbf0cfccb380d1d33\",\n                   
+    \"name\": \"Cakes Showcase\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 4506095233995589480,\n                           
+    \"guid\": \"1cd73eae1dac947489344bd2ab873123\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    }\n            ],\n            \"_assetCategoryGuid\": \"c04ffa89f3c74b12b4eb1170dec69946\"\n       
+    },\n        {\n            \"guid\": \"560258ef2228453090e8f198f46f67c9\",\n           
+    \"name\": \"Cup and plate\",\n            \"_modules\": [\n                {\n                   
+    \"guid\": \"278ecce968484cdcaab799ddb54351b2\",\n                    \"name\":
+    \"Cup and plate\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 4422826434019322298,\n                           
+    \"guid\": \"ee14adf56f977654d88692a714b8a483\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"b6dd3b7762c940d69c42c314ff5fa4df\",\n                   
+    \"name\": \"Cup\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 6420828718725056080,\n                           
+    \"guid\": \"d2335c248ffcfac40829e6eb6553f909\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"bc93e7c17a31485e9bd9626bd7ce6125\",\n                   
+    \"name\": \"Plate\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 8850127729578594579,\n                           
+    \"guid\": \"44576ec95827b37418c6c687c7ad37e6\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    }\n            ],\n            \"_assetCategoryGuid\": \"c04ffa89f3c74b12b4eb1170dec69946\"\n       
+    },\n        {\n            \"guid\": \"46230f76b84d4c57a894a2015699038a\",\n           
+    \"name\": \"Paper Cup with Lid\",\n            \"_modules\": [\n               
+    {\n                    \"guid\": \"cd7c4f7415d34bdfa2629a1623e5371d\",\n                   
+    \"name\": \"Cup with Lid\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 5020306628536942236,\n                           
+    \"guid\": \"9f311a9d05bee1f438915646bdaebb9a\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"dcb9803b3f464f1ebf74106c25a84aab\",\n                   
+    \"name\": \"Cup\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 369749119052413868,\n                           
+    \"guid\": \"ff665788aa3bc634081c581bc519a147\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"9574211257694acb81f00a3ec27edb80\",\n                   
+    \"name\": \"Lid\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 8335259947500042201,\n                           
+    \"guid\": \"332427aef64980d4f9752a39fb7b888a\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    }\n            ],\n            \"_assetCategoryGuid\": \"c04ffa89f3c74b12b4eb1170dec69946\"\n       
+    },\n        {\n            \"guid\": \"b6d8667e8bc34f059f4487e951230144\",\n           
+    \"name\": \"POS equipment\",\n            \"_modules\": [\n                {\n                   
+    \"guid\": \"a655e975257949ea880337b618635a25\",\n                    \"name\":
+    \"Computer\",\n                    \"prefabs\": [\n                        {\n                           
+    \"fileID\": 7430934858770784548,\n                            \"guid\": \"d73de4830a94fc840b66a60cb9090daa\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    },\n                {\n                    \"guid\": \"3133426f59004da299c894bcaa37c212\",\n                   
+    \"name\": \"Terminal\",\n                    \"prefabs\": [\n                       
+    {\n                            \"fileID\": 7143865967724331885,\n                           
+    \"guid\": \"03b91734f2930ec40949b67f68a9df6b\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    }\n            ],\n            \"_assetCategoryGuid\": \"c04ffa89f3c74b12b4eb1170dec69946\"\n       
+    },\n        {\n            \"guid\": \"e98a967a74f6429c900d4c95f5a4914d\",\n           
+    \"name\": \"Plant\",\n            \"_modules\": [\n                {\n                   
+    \"guid\": \"9e0264bb5fcb46278bc6cf69db9beb89\",\n                    \"name\":
+    \"Plant\",\n                    \"prefabs\": [\n                        {\n                           
+    \"fileID\": 4537163982485716059,\n                            \"guid\": \"e892bdb6398b7c94f8bda59417d98374\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    }\n            ],\n            \"_assetCategoryGuid\": \"c04ffa89f3c74b12b4eb1170dec69946\"\n       
+    },\n        {\n            \"guid\": \"b954037c897d4183a997bd21220725f4\",\n           
+    \"name\": \"MBS Text\",\n            \"_modules\": [\n                {\n                   
+    \"guid\": \"387d7243e25843a58ccb560c87649c12\",\n                    \"name\":
+    \"Test\",\n                    \"prefabs\": [\n                        {\n                           
+    \"fileID\": 1604366692302633130,\n                            \"guid\": \"a2686cd0400b1b94fad4a2f001c4a837\",\n                           
+    \"type\": 3\n                        }\n                    ]\n               
+    }\n            ],\n            \"_assetCategoryGuid\": \"c04ffa89f3c74b12b4eb1170dec69946\"\n       
+    }\n    ],\n    \"_decoratorCategories\": [\n        {\n            \"guid\":
+    \"c04ffa89f3c74b12b4eb1170dec69946\",\n            \"_name\": \"All\"\n       
+    }\n    ]\n}"
