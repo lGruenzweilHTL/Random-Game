@@ -182,7 +182,7 @@ MonoBehaviour:
   groundCheckDistance: 0.2
   groundLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1
   footstepSound: {fileID: 8300000, guid: 518f5da3963c85c499ed6ec19a40162e, type: 3}
   footstepDelay: 0.5
   cameraShakeData: {fileID: 11400000, guid: de0d8807e573da54094de0873ac0b2ca, type: 2}
