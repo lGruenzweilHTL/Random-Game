@@ -14,11 +14,15 @@ public class SelectionManager : MonoBehaviour
     public GameObject interaction_Info_UI;
     public GameObject ClipBoardText;
     public GameObject WoodenPlanks;
+    public GameObject knife;
+    public GameObject knife_UI;
+    public GameObject BoxWhereKnifeIsIn;
 
     public bool isClipBoardOpen = false;
     public bool IsPaused;
     public bool isWindowCovered = false;
-    public int counter = 0;
+    public bool KnifeGrabbed = false;
+    public bool knifeisHidden = false;
 
     private void Awake()
     {
@@ -59,6 +63,7 @@ public class SelectionManager : MonoBehaviour
                     DoorInteractionOpen();
                     DoorInteractionClose();
                     WindowInteraction();
+                    KnifeInteraction();
                 }
                 else interaction_Info_UI.SetActive(false);
             }
@@ -110,6 +115,27 @@ public class SelectionManager : MonoBehaviour
         if(interaction_text.text == "Press E to cover Window" && Input.GetKey(KeyCode.E) && !PauseSystem.Instance.IsPaused)
         {
             windowAnimator.SetTrigger("Cover");
+        }
+    }
+
+    private void KnifeInteraction()
+    {
+        if (interaction_text.text == "Knife" && Input.GetKey(KeyCode.E) && !PauseSystem.Instance.IsPaused)
+        {
+            knife_UI.SetActive(false);
+            knife.SetActive(true);
+            KnifeGrabbed = true;
+        }
+        if(interaction_text.text == "Put in Knife" && Input.GetKey(KeyCode.E) && !PauseSystem.Instance.IsPaused && KnifeGrabbed)
+        {
+            knife_UI.SetActive(true);
+            knife_UI.transform.localPosition = new Vector3(29.924f, 4.952f, 12.735f);
+            knife.SetActive(false);
+            KnifeGrabbed = false;
+            knifeisHidden = true;
+            knife.GetComponent<InteractableObject>().interactable = false;
+            BoxWhereKnifeIsIn.GetComponent<InteractableObject>().interactable = false;
+
         }
     }
 
