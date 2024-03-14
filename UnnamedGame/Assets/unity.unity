@@ -6193,6 +6193,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[0].inSlope
+      value: 0.084633455
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[1].inSlope
+      value: -0.026078235
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[0].outSlope
+      value: 0.084633455
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[1].inWeight
+      value: 0.25333336
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[1].outSlope
+      value: -0.026078235
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[0].outWeight
+      value: 0.30666667
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5120473642914382706, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
       propertyPath: m_Name
       value: Player
