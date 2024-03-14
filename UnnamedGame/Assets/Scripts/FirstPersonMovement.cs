@@ -6,10 +6,10 @@ public class FirstPersonMovement : MonoBehaviour
 {
     #region Fields
 
+    [SerializeField] private Settings settingsData;
     [SerializeField] private Transform cameraTransform;
 
     [Space, SerializeField] private float speed = 5f;
-    [SerializeField] private float mouseSensitivity = 300f;
 
     [Space, SerializeField] private float gravity = -20f;
 
@@ -82,7 +82,7 @@ public class FirstPersonMovement : MonoBehaviour
             {
                 footstepAudioSource.PlayOneShot(footstepSound, 0.7f);
                 nextFootstep += footstepDelay;
-                CameraShakerHandler.Shake(cameraShakeData);
+                if (settingsData.CameraShakeEnabled) CameraShakerHandler.Shake(cameraShakeData);
             }
         }
     }
@@ -90,8 +90,8 @@ public class FirstPersonMovement : MonoBehaviour
     {
         if (cameraShakeActive) return;
 
-        float MouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float MouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float MouseX = Input.GetAxis("Mouse X") * settingsData.MouseSensitivity * Time.deltaTime;
+        float MouseY = Input.GetAxis("Mouse Y") * settingsData.MouseSensitivity * Time.deltaTime;
 
         xRotation -= MouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
