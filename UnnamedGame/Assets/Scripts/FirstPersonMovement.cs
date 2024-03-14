@@ -25,7 +25,8 @@ public class FirstPersonMovement : MonoBehaviour
     [Space, SerializeField] private ShakeData cameraShakeData;
 
     #endregion
-
+    public bool isAllowed = true;
+    public static FirstPersonMovement Instance { get; private set; }
     #region Variables
 
     private CharacterController controller;
@@ -46,12 +47,24 @@ public class FirstPersonMovement : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         footstepAudioSource = GetComponent<AudioSource>();
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Update()
     {
-        HandleMoving();
-        HandleLooking();
+        if (isAllowed)
+        {
+            HandleMoving();
+            HandleLooking();
+        }
     }
 
     void HandleMoving()

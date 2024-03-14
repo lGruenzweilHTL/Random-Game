@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Diagnostics.Tracing;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 
 public class SelectionManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private float requiredDistance = 10f;
     [SerializeField] private Animator windowAnimator;
     TMP_Text interaction_text;
+    [SerializeField] private Animator blackscreenFade;
 
     public GameObject interaction_Info_UI;
     public GameObject ClipBoardText;
@@ -17,12 +19,17 @@ public class SelectionManager : MonoBehaviour
     public GameObject knife;
     public GameObject knife_UI;
     public GameObject BoxWhereKnifeIsIn;
+    //so wollte ich es haben
+    public GameObject MainCamera;
+    public GameObject BedCamera;
+    //
 
     public bool isClipBoardOpen = false;
     public bool IsPaused;
     public bool isWindowCovered = false;
     public bool KnifeGrabbed = false;
     public bool knifeisHidden = false;
+    public bool GoToBed = false;
 
     private void Awake()
     {
@@ -64,6 +71,7 @@ public class SelectionManager : MonoBehaviour
                     DoorInteractionClose();
                     WindowInteraction();
                     KnifeInteraction();
+                    BedInteraction();
                 }
                 else interaction_Info_UI.SetActive(false);
             }
@@ -110,9 +118,9 @@ public class SelectionManager : MonoBehaviour
         }
     }
 
-    private void WindowInteraction ()
+    private void WindowInteraction()
     {
-        if(interaction_text.text == "Press E to cover Window" && Input.GetKey(KeyCode.E) && !PauseSystem.Instance.IsPaused)
+        if(interaction_text.text == "Cover Window" && Input.GetKey(KeyCode.E) && !PauseSystem.Instance.IsPaused)
         {
             windowAnimator.SetTrigger("Cover");
         }
@@ -135,10 +143,34 @@ public class SelectionManager : MonoBehaviour
             knifeisHidden = true;
             knife.GetComponent<InteractableObject>().interactable = false;
             BoxWhereKnifeIsIn.GetComponent<InteractableObject>().interactable = false;
+        }
+    }
+    //von hier -
 
+    //So wollte ich es machen
+    //So wollte ich es machen
+    //So wollte ich es machen
+    public void BedInteraction()
+    {
+        if (interaction_text.text == "Go to Bed" && Input.GetKey(KeyCode.E) && !PauseSystem.Instance.IsPaused)
+        {
+            blackscreenFade.SetTrigger("StartFade");
+            Invoke("RoundManager", 2);
         }
     }
 
+    private void RoundManager()
+    {
+        //So wollte ich es machen
+        //So wollte ich es machen
+        //So wollte ich es machen
+        FirstPersonMovement.Instance.isAllowed = false;
+        Cursor.lockState = CursorLockMode.None;
+        MainCamera.SetActive(false);
+        BedCamera.SetActive(true);
+    }
+
+    //- bis hier
     public void WindowWoodenPlanksRemover()
     {
         WoodenPlanks.GetComponent<InteractableObject>().interactable = false;
