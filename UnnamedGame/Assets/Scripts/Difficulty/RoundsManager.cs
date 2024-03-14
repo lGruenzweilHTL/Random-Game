@@ -33,17 +33,21 @@ public class RoundsManager : MonoBehaviour
     [SerializeField] private Round[] rounds;
     [SerializeField] private Light[] lights;
     [SerializeField] private GameObject flashlight;
+    [SerializeField] private Animator blackscreenFade;
     private int roundIndex = 0;
 
     private List<GameObject> spawned = new();
 
     public void StartNextRound()
     {
+        blackscreenFade.SetTrigger("StartFade");
+
         if (++roundIndex >= rounds.Length)
         {
             TriggerWin();
             return;
         }
+
         foreach (GameObject obj in spawned) // Destroy all objects from previous round
         {
             Destroy(obj);
