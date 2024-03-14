@@ -7,8 +7,11 @@ public class InteractableObject : MonoBehaviour
 {
     
     public string ItemName;
+    public bool interactable = true;
     public string GetItemName()
     {
+        if (!interactable) return "";
+
         bool isDoorOpen = SelectionManager.Instance.DoorInteractionOpen();
         bool isDoorClose = SelectionManager.Instance.DoorInteractionClose();
         

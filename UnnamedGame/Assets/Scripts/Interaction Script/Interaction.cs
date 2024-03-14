@@ -1,17 +1,24 @@
 using UnityEngine;
 using TMPro;
+using System.Diagnostics.Tracing;
+using System.Threading.Tasks;
 
 public class SelectionManager : MonoBehaviour
 {
-    public static SelectionManager Instance;
+    public static SelectionManager Instance { get; private set; }
 
     [SerializeField] private float requiredDistance = 10f;
+    [SerializeField] private Animator windowAnimator;
     TMP_Text interaction_text;
 
     public GameObject interaction_Info_UI;
     public GameObject ClipBoardText;
+    public GameObject WoodenPlanks;
+
     public bool isClipBoardOpen = false;
     public bool IsPaused;
+    public bool isWindowCovered = false;
+    public int counter = 0;
 
     private void Awake()
     {
@@ -51,6 +58,7 @@ public class SelectionManager : MonoBehaviour
                     ClipBoardInteraction();
                     DoorInteractionOpen();
                     DoorInteractionClose();
+                    WindowInteraction();
                 }
                 else interaction_Info_UI.SetActive(false);
             }
@@ -95,6 +103,19 @@ public class SelectionManager : MonoBehaviour
             if (IsPaused) Unpause();
             interaction_Info_UI.SetActive(false);
         }
+    }
+
+    private void WindowInteraction ()
+    {
+        if(interaction_text.text == "Press E to cover Window" && Input.GetKey(KeyCode.E) && !PauseSystem.Instance.IsPaused)
+        {
+            windowAnimator.SetTrigger("Cover");
+        }
+    }
+
+    public void WindowWoodenPlanksRemover()
+    {
+        WoodenPlanks.GetComponent<InteractableObject>().interactable = false;
     }
 
     public void Pause()
