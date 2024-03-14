@@ -10,6 +10,8 @@ public class FirstPersonMovement : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
 
     [Space, SerializeField] private float speed = 5f;
+    [SerializeField] private float accelerationMultiplier;
+    [SerializeField] private AnimationCurve accelerationCurve;
 
     [Space, SerializeField] private float gravity = -20f;
 
@@ -30,6 +32,7 @@ public class FirstPersonMovement : MonoBehaviour
     private AudioSource footstepAudioSource;
     private Vector2 input;
     private float yMovement;
+    private float currentAcceleration = 0f;
     private float nextFootstep = 0;
     private bool isGrounded;
     private float xRotation = 0f;
@@ -62,8 +65,15 @@ public class FirstPersonMovement : MonoBehaviour
         }
 
         // Get Input (works with controller)
-        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
+        input.x = Input.GetAxis("Horizontal");
+        input.y = Input.GetAxis("Vertical");
+
+        if (input.magnitude > 0) currentAcceleration += Time.deltaTime * accelerationMultiplier;
+        else currentAcceleration = 0;
+        currentAcceleration = Mathf.Clamp01(currentAcceleration);
+
+        input.Normalize();
+        input *= accelerationCurve.Evaluate(currentAcceleration);
 
 
         Vector3 move = transform.right * input.x + transform.forward * input.y;

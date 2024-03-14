@@ -5,10 +5,12 @@ public class SettingsMenu : MonoBehaviour
 {
     [SerializeField] private Settings settingsData;
     [SerializeField] private Slider sensitivitySlider;
+    [SerializeField] private Toggle camShakeToggle;
 
     private void Start()
     {
         sensitivitySlider.value = settingsData.MouseSensitivity;
+        camShakeToggle.isOn = settingsData.CameraShakeEnabled;
     }
 
     public void SetSensitivity(float sensitivity)
@@ -17,7 +19,7 @@ public class SettingsMenu : MonoBehaviour
     }
     public void SetPPActive(bool active)
     {
-        settingsData.OnPostProcessingEnabled(active);
+        settingsData.OnPostProcessingEnabledEvent(active);
     }
     public void SetCameraShakeActive(bool active)
     {

@@ -47,7 +47,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _roughness: 0
+  _roughness: 2
   _roughnessNoise: 0
   _roughnessCurve:
     serializedVersion: 2
@@ -73,7 +73,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _positionalInfluence: {x: 0, y: 0, z: 0}
+  _positionalInfluence: {x: 1, y: 1, z: 0}
   _positionalInverts: 0
   _rotationalInfluence: {x: 20, y: 0, z: 1}
   _rotationalInverts: 0

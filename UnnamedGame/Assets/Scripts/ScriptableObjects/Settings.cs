@@ -5,6 +5,6 @@ using UnityEngine;
 public class Settings : ScriptableObject
 {
     public float MouseSensitivity = 300f;
-    public Action<bool> OnPostProcessingEnabled;
+    public Action<bool> OnPostProcessingEnabledEvent;
     public bool CameraShakeEnabled = true;
 }

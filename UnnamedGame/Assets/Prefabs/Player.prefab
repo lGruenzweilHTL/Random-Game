@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 7760369654852186802}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,7 +176,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsData: {fileID: 11400000, guid: 4ac4559abcfb2774ea9363f652bd655c, type: 2}
   cameraTransform: {fileID: 4683566934137560326}
-  speed: 5
+  speed: 3
+  accelerationMultiplier: 1
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0033340454
+      value: 0.49765015
+      inSlope: 0.50068057
+      outSlope: 0.50068057
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.50068057
+      outSlope: 0.50068057
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   gravity: -20
   groundCheckTransform: {fileID: 4496863661518467601}
   groundCheckDistance: 0.2

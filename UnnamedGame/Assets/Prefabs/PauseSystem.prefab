@@ -1349,6 +1349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439a7cb7d8e80ed4c8900abec26db32f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Crosshair: {fileID: 0}
   PauseObject: {fileID: 378289723030088601}
   HUD: {fileID: 0}
   SettingsPanel: {fileID: 2180117543441756909}
@@ -1366,6 +1367,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsData: {fileID: 11400000, guid: 4ac4559abcfb2774ea9363f652bd655c, type: 2}
   sensitivitySlider: {fileID: 3407231879572989283}
+  camShakeToggle: {fileID: 864241814469147484}
+  ppToggle: {fileID: 1708528026312586539}
 --- !u!1 &5616218553538503649
 GameObject:
   m_ObjectHideFlags: 0

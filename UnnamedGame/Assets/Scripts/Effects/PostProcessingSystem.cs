@@ -7,6 +7,6 @@ public class PostProcessingSystem : MonoBehaviour
     [SerializeField] private Settings settings;
     private void Start()
     {
-        settings.OnPostProcessingEnabled += (active) => GetComponent<PostProcessVolume>().enabled = active;
+        settings.OnPostProcessingEnabledEvent += (active) => GetComponent<PostProcessVolume>().enabled = active;
     }
 }

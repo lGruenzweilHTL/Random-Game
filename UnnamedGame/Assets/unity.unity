@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731844, g: 0.13414837, b: 0.12107841, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731838, g: 0.1341482, b: 0.12107837, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3601,6 +3601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Clipboard
+  interactable: 1
 --- !u!4 &412573398 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5532517369463173080, guid: 218df648df87a3641bb47f0c6656b17c, type: 3}
@@ -6436,6 +6437,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447475546522735811, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
+      propertyPath: accelerationCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
     - target: {fileID: 5120473642914382706, guid: acf50c407b45e6a4689365656fa05cf2, type: 3}
       propertyPath: m_Name
       value: Player
@@ -6528,6 +6573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Press E to cover Window
+  interactable: 1
 --- !u!114 &773319434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13434,6 +13480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: open
+  interactable: 1
 --- !u!4 &1457591935 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8005885865537602636, guid: efa1cfa5ecf9f834fa862ce6854a315a, type: 3}

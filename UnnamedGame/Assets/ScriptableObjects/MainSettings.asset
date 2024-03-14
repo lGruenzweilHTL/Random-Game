@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2d112d78add014fb47d06b8ed5e671, type: 3}
   m_Name: MainSettings
   m_EditorClassIdentifier: 
-  MouseSensitivity: 300
+  MouseSensitivity: 111.43792
+  CameraShakeEnabled: 1
