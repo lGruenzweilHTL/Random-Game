@@ -1,45 +1,45 @@
 using System.Collections.Generic;
-using TMPro;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoundsManager : MonoBehaviour
 {
     [System.Serializable]
-    public struct Item
-    {
-        public GameObject Prefab;
-        public Vector3[] SpawnPoints;
-    }
-    [System.Serializable]
     public struct Round
     {
-        public Item[] Items;
+        public GameObject clipboard;
+        public GameObject knife;
         public bool LightsOn;
     }
 
-    public static RoundsManager Instance;
-    private void Awake()
+    private void Start()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            DontDestroyOnLoad(this);
-            Instance = this;
-        }
+        SpawnItems(rounds[0]);
     }
 
     [SerializeField] private Round[] rounds;
     [SerializeField] private Light[] lights;
     [SerializeField] private GameObject flashlight;
+    [SerializeField] private Animator blackscreenFade;
+    [SerializeField] private Transform player;
+    [SerializeField] private GameObject playerVisuals;
+
     private int roundIndex = 0;
 
     private List<GameObject> spawned = new();
 
-    public void StartNextRound()
+    public async void StartNextRound()
     {
+        FirstPersonMovement.Instance.isAllowed = false;
+
+        await BedAnimation.AnimateToBed(playerVisuals, Camera.main.transform);
+
+        /*
+        blackscreenFade.SetTrigger("StartFade");
+        await Task.Delay(2000); // wait for blackscreen finished
+        */
+
         if (++roundIndex >= rounds.Length)
         {
             TriggerWin();
@@ -53,12 +53,7 @@ public class RoundsManager : MonoBehaviour
 
         Round currentRound = rounds[roundIndex];
 
-        foreach (Item item in currentRound.Items) // spawn items for this round
-        {
-            int randomIndex = Random.Range(0, item.SpawnPoints.Length);
-
-            spawned.Add(Instantiate(item.Prefab, item.SpawnPoints[randomIndex], Quaternion.identity));
-        }
+        SpawnItems(currentRound);
 
         if (currentRound.LightsOn) // if the lights should be on
         {
@@ -74,13 +69,38 @@ public class RoundsManager : MonoBehaviour
             {
                 l.enabled = false;
             }
-            flashlight.SetActive(false); // enable flashlight
+            flashlight.SetActive(true); // enable flashlight
         }
+
+        TriggerConfirmation();
+    }
+    private void SpawnItems(Round currentRound)
+    {
+        if (currentRound.knife != null)
+        {
+            GameObject knife = Instantiate(currentRound.knife);
+            spawned.Add(knife);
+            SelectionManager.Instance.knife_UI = knife;
+        }
+        if (currentRound.clipboard != null) spawned.Add(Instantiate(currentRound.clipboard));
+    }
+    private async void TriggerConfirmation()
+    {
+        var process = SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
+
+        while (!process.isDone) await Task.Yield(); // Wait for load
+
+        Cursor.lockState = CursorLockMode.None;
+        ItemConfirmation.Instance.Init(rounds[roundIndex - 1].knife != null);
     }
 
     private void TriggerWin()
     {
+        lights = new Light[0]; // prevents cross-scene error
+
+        TriggerConfirmation();
+
         Debug.Log("YOU WIN");
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
 }

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: MainSettings
   m_EditorClassIdentifier: 
   MouseSensitivity: 111.43792
+  PostProcessingEnabled: 1
   CameraShakeEnabled: 1

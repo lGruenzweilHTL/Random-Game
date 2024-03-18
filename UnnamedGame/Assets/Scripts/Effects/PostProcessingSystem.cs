@@ -5,8 +5,8 @@ using UnityEngine.Rendering.PostProcessing;
 public class PostProcessingSystem : MonoBehaviour
 {
     [SerializeField] private Settings settings;
-    private void Start()
+    private void Update()
     {
-        settings.OnPostProcessingEnabledEvent += (active) => GetComponent<PostProcessVolume>().enabled = active;
+        GetComponent<PostProcessVolume>().enabled = settings.PostProcessingEnabled;
     }
 }

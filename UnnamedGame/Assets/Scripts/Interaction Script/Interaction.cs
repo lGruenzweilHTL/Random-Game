@@ -1,13 +1,11 @@
 using UnityEngine;
 using TMPro;
-using System.Diagnostics.Tracing;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
 
 public class SelectionManager : MonoBehaviour
 {
     public static SelectionManager Instance { get; private set; }
 
+    [SerializeField] private RoundsManager roundsManager;
     [SerializeField] private float requiredDistance = 10f;
     [SerializeField] private Animator windowAnimator;
     TMP_Text interaction_text;
@@ -19,10 +17,6 @@ public class SelectionManager : MonoBehaviour
     public GameObject knife;
     public GameObject knife_UI;
     public GameObject BoxWhereKnifeIsIn;
-    //so wollte ich es haben
-    public GameObject MainCamera;
-    public GameObject BedCamera;
-    //
 
     public bool isClipBoardOpen = false;
     public bool IsPaused;
@@ -30,6 +24,8 @@ public class SelectionManager : MonoBehaviour
     public bool KnifeGrabbed = false;
     public bool knifeisHidden = false;
     public bool GoToBed = false;
+
+    public bool isInAnimation = false;
 
     private void Awake()
     {
@@ -81,7 +77,7 @@ public class SelectionManager : MonoBehaviour
 
     public bool DoorInteractionOpen()
     {
-        if (interaction_text.text == "open" && Input.GetKey(KeyCode.E) && !PauseSystem.Instance.IsPaused)
+        if (interaction_text.text == "open" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
         {
             interaction_text.text = "locked";
             return true;
@@ -91,7 +87,7 @@ public class SelectionManager : MonoBehaviour
 
     public bool DoorInteractionClose()
     {
-        if (interaction_text.text == "locked" && Input.GetKey(KeyCode.R) && !PauseSystem.Instance.IsPaused)
+        if (interaction_text.text == "locked" && Input.GetKeyDown(KeyCode.R) && !PauseSystem.Instance.IsPaused)
         {
             interaction_text.text = "open";
             return false;
@@ -102,7 +98,7 @@ public class SelectionManager : MonoBehaviour
 
     private void ClipBoardInteraction()
     {
-        if (interaction_text.text == "Clipboard" && Input.GetKey(KeyCode.E) && !PauseSystem.Instance.IsPaused)
+        if (interaction_text.text == "Clipboard" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
         {
             ClipBoardText.SetActive(true);
             isClipBoardOpen = true;
@@ -120,7 +116,7 @@ public class SelectionManager : MonoBehaviour
 
     private void WindowInteraction()
     {
-        if(interaction_text.text == "Cover Window" && Input.GetKey(KeyCode.E) && !PauseSystem.Instance.IsPaused)
+        if(interaction_text.text == "Cover Window" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
         {
             windowAnimator.SetTrigger("Cover");
         }
@@ -128,49 +124,32 @@ public class SelectionManager : MonoBehaviour
 
     private void KnifeInteraction()
     {
-        if (interaction_text.text == "Knife" && Input.GetKey(KeyCode.E) && !PauseSystem.Instance.IsPaused)
+        if (interaction_text.text == "Knife" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
         {
             knife_UI.SetActive(false);
             knife.SetActive(true);
             KnifeGrabbed = true;
         }
-        if(interaction_text.text == "Put in Knife" && Input.GetKey(KeyCode.E) && !PauseSystem.Instance.IsPaused && KnifeGrabbed)
+        if(interaction_text.text == "Put in Knife" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused && KnifeGrabbed)
         {
             knife_UI.SetActive(true);
-            knife_UI.transform.localPosition = new Vector3(29.924f, 4.952f, 12.735f);
+            knife_UI.transform.position = new Vector3(6.13506889f, 3.24399996f, 3.15181732f);
             knife.SetActive(false);
             KnifeGrabbed = false;
             knifeisHidden = true;
-            knife.GetComponent<InteractableObject>().interactable = false;
+            knife_UI.GetComponent<InteractableObject>().interactable = false;
             BoxWhereKnifeIsIn.GetComponent<InteractableObject>().interactable = false;
         }
     }
-    //von hier -
 
-    //So wollte ich es machen
-    //So wollte ich es machen
-    //So wollte ich es machen
     public void BedInteraction()
     {
-        if (interaction_text.text == "Go to Bed" && Input.GetKey(KeyCode.E) && !PauseSystem.Instance.IsPaused)
+        if (interaction_text.text == "Go to Bed" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused && !isInAnimation)
         {
-            blackscreenFade.SetTrigger("StartFade");
-            Invoke("RoundManager", 2);
+            isInAnimation = true;
+            roundsManager.StartNextRound();
         }
     }
-
-    private void RoundManager()
-    {
-        //So wollte ich es machen
-        //So wollte ich es machen
-        //So wollte ich es machen
-        FirstPersonMovement.Instance.isAllowed = false;
-        Cursor.lockState = CursorLockMode.None;
-        MainCamera.SetActive(false);
-        BedCamera.SetActive(true);
-    }
-
-    //- bis hier
     public void WindowWoodenPlanksRemover()
     {
         WoodenPlanks.GetComponent<InteractableObject>().interactable = false;
