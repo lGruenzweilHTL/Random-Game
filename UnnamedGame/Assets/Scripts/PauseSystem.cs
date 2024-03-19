@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PauseSystem : MonoBehaviour
 {
@@ -25,7 +21,6 @@ public class PauseSystem : MonoBehaviour
     }
 
     [SerializeField] private GameObject PauseObject;
-    [SerializeField, Tooltip("The object to disable when paused")] private GameObject HUD;
     [SerializeField] private GameObject SettingsPanel;
     public bool IsPaused { get; private set; }
 
@@ -41,7 +36,6 @@ public class PauseSystem : MonoBehaviour
     {
         Time.timeScale = 0f;
         PauseObject.SetActive(true);
-        if (HUD != null) HUD.SetActive(false);
         Crosshair.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
 
@@ -52,7 +46,6 @@ public class PauseSystem : MonoBehaviour
         Time.timeScale = 1f;
         PauseObject.SetActive(false);
         SettingsPanel.SetActive(false);
-        if (HUD != null) HUD.SetActive(true);
         Crosshair.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
 

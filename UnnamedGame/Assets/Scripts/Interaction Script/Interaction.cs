@@ -34,7 +34,7 @@ public class SelectionManager : MonoBehaviour
 
     public bool isInAnimation = false;
 
-    private bool doorOpen = false;
+    public bool doorOpen = false;
 
     private void Awake()
     {
@@ -91,7 +91,7 @@ public class SelectionManager : MonoBehaviour
 
     public void ToggleDoorInteraction()
     {
-        if (interaction_text.text == "" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
+        if (interaction_text.text is "Open door" or "Close door" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
         {
             bool allowsAnimation = DoorOpenAnimation.GetCurrentAnimatorStateInfo(0).IsName("Wait");
             if (allowsAnimation)
@@ -219,7 +219,7 @@ public class SelectionManager : MonoBehaviour
         {
             isInAnimation = true;
             roundsManager.StartNextRound();
-            Bed.GetComponent<InteractableObject>().interactable = false;
+            //Bed.GetComponent<InteractableObject>().interactable = false;
         }
     }
     public void WindowWoodenPlanksRemover()
