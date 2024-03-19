@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemConfirmation : MonoBehaviour
@@ -49,11 +50,15 @@ public class ItemConfirmation : MonoBehaviour
     }
     private async void CloseScene()
     {
-        SelectionManager.Instance.isInAnimation = false;
-        FirstPersonMovement.Instance.isAllowed = true;
         Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(2);
 
         await BedAnimation.AnimateOutOfBed(playerVisuals, Camera.main.transform);
+        RoundsManager.Instance.isInBed = false;
+        FirstPersonMovement.Instance.isAllowed = true;
+        SelectionManager.Instance.isInAnimation = false;
+        PauseSystem.Instance.Crosshair.SetActive(true);
+
+
     }
 }

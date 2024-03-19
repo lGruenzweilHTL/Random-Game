@@ -10,7 +10,10 @@ public class InteractableObject : MonoBehaviour
 
         bool isDoorOpen = SelectionManager.Instance.DoorInteractionOpen();
         bool isDoorClose = SelectionManager.Instance.DoorInteractionClose();
-        
+
+        bool isLightOn = SelectionManager.Instance.IsLightOn();
+        bool isLightOff = SelectionManager.Instance.IsLightOff();
+
         if (ItemName == "open" && isDoorOpen)
         {
             ItemName = "locked";
@@ -18,6 +21,14 @@ public class InteractableObject : MonoBehaviour
         else if(ItemName == "locked" && !isDoorClose)
         {
             ItemName = "open";
+        }
+        if (ItemName == "Light on" && isLightOn)
+        {
+            ItemName = "Light off";
+        }
+        else if (ItemName == "Light off" && !isLightOff)
+        {
+            ItemName = "Light on";
         }
         return ItemName;
     }

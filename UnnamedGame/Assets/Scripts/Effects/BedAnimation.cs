@@ -14,7 +14,7 @@ public class BedAnimation : MonoBehaviour
     public static async Task AnimateToBed(GameObject visuals, Transform camera)
     {
         if (visuals != null) visuals.SetActive(false);
-
+        PauseSystem.Instance.Crosshair.SetActive(false);
         initialCamRotation = camera.rotation;
         initialCamPosition = camera.position;
 

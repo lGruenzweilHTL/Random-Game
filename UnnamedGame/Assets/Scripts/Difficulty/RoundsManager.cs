@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,11 +15,26 @@ public class RoundsManager : MonoBehaviour
         public bool LightsOn;
     }
 
+    public bool isInBed = false;
     private void Start()
     {
         SpawnItems(rounds[0]);
     }
 
+    //Instance
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public static RoundsManager Instance { get; private set; }
     [SerializeField] private Round[] rounds;
     [SerializeField] private Light[] lights;
     [SerializeField] private GameObject flashlight;
@@ -25,7 +42,7 @@ public class RoundsManager : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private GameObject playerVisuals;
 
-    private int roundIndex = 0;
+    public int roundIndex = 0;
 
     private List<GameObject> spawned = new();
 
@@ -34,6 +51,8 @@ public class RoundsManager : MonoBehaviour
         FirstPersonMovement.Instance.isAllowed = false;
 
         await BedAnimation.AnimateToBed(playerVisuals, Camera.main.transform);
+        isInBed = true;
+
 
         /*
         blackscreenFade.SetTrigger("StartFade");
@@ -87,10 +106,10 @@ public class RoundsManager : MonoBehaviour
     private async void TriggerConfirmation()
     {
         var process = SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
-
         while (!process.isDone) await Task.Yield(); // Wait for load
 
         Cursor.lockState = CursorLockMode.None;
+
         ItemConfirmation.Instance.Init(rounds[roundIndex - 1].knife != null);
     }
 
