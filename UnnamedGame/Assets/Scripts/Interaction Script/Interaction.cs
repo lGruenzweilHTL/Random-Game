@@ -34,6 +34,8 @@ public class SelectionManager : MonoBehaviour
 
     public bool isInAnimation = false;
 
+    private bool doorOpen = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -56,8 +58,7 @@ public class SelectionManager : MonoBehaviour
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             var selectionTransform = hit.transform;
             var playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
@@ -69,9 +70,10 @@ public class SelectionManager : MonoBehaviour
                     BedInteraction();
                     KnifeInteraction();
                     interaction_text.text = selectionTransform.GetComponent<InteractableObject>().GetItemName();
-                    if (!PauseSystem.Instance.IsPaused) interaction_Info_UI.SetActive(true);
+                    if (!PauseSystem.Instance.IsPaused)
+                        interaction_Info_UI.SetActive(true);
 
-                    AnimateDoor(true);
+                    ToggleDoorInteraction();
                     ClipBoardInteraction();
                     DoorInteractionOpen();
                     DoorInteractionClose();
@@ -79,18 +81,24 @@ public class SelectionManager : MonoBehaviour
                     IsLightOn();
                     IsLightOff();
                 }
-                else interaction_Info_UI.SetActive(false);
+                else
+                    interaction_Info_UI.SetActive(false);
             }
-            else interaction_Info_UI.SetActive(false);
+            else
+                interaction_Info_UI.SetActive(false);
         }
     }
 
-    public void AnimateDoor(bool open)
+    public void ToggleDoorInteraction()
     {
         if (interaction_text.text == "" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
         {
-            DoorOpenAnimation.SetBool("Opened", open);
-            DoorOpenAnimation.SetTrigger("Start");
+            bool allowsAnimation = DoorOpenAnimation.GetCurrentAnimatorStateInfo(0).IsName("Wait");
+            if (allowsAnimation)
+            {
+                doorOpen = !doorOpen;
+                DoorOpenAnimation.SetTrigger(doorOpen ? "Open" : "Close");
+            } 
         }
     }
     public bool IsLightOn()
@@ -102,7 +110,8 @@ public class SelectionManager : MonoBehaviour
             isLightOn = false;
             return true;
         }
-        else return false;
+        else
+            return false;
     }
 
     public bool IsLightOff()
@@ -114,11 +123,12 @@ public class SelectionManager : MonoBehaviour
             isLightOn = true;
             return false;
         }
-        else return true;
+        else
+            return true;
     }
     public bool DoorInteractionOpen()
     {
-        if(interaction_text.text == "Door Key" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
+        if (interaction_text.text == "Door Key" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
         {
             isDoorKeyGrabbed = true;
         }
@@ -127,7 +137,8 @@ public class SelectionManager : MonoBehaviour
             interaction_text.text = "locked";
             return true;
         }
-        else return false;
+        else
+            return false;
     }
 
     public bool DoorInteractionClose()
@@ -143,7 +154,8 @@ public class SelectionManager : MonoBehaviour
             return false;
         }
 
-        else return true;
+        else
+            return true;
     }
 
     private void ClipBoardInteraction()
@@ -166,7 +178,7 @@ public class SelectionManager : MonoBehaviour
 
     private void WindowInteraction()
     {
-        if(interaction_text.text == "Cover Window" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
+        if (interaction_text.text == "Cover Window" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
         {
             windowAnimator.SetTrigger("Cover");
             isWindowCovered = true;
@@ -217,8 +229,10 @@ public class SelectionManager : MonoBehaviour
 
     private void LightSwichter()
     {
-        if (isLightOn) BedroomLight.GetComponent<Light>().intensity = 0.3f;
-        else if (!isLightOn) BedroomLight.GetComponent<Light>().intensity = 1f;
+        if (isLightOn)
+            BedroomLight.GetComponent<Light>().intensity = 0.3f;
+        else if (!isLightOn)
+            BedroomLight.GetComponent<Light>().intensity = 1f;
     }
 
     public void Pause()
