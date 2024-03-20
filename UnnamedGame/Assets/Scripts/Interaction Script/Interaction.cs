@@ -24,6 +24,7 @@ public class SelectionManager : MonoBehaviour
 
     public Light BedroomLight;
 
+    public bool allowsAnimation = false;
     public bool isClipBoardOpen = false;
     public bool isWindowCovered = false;
     public bool KnifeGrabbed = false;
@@ -93,7 +94,7 @@ public class SelectionManager : MonoBehaviour
     {
         if (interaction_text.text is "Open door" or "Close door" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
         {
-            bool allowsAnimation = DoorOpenAnimation.GetCurrentAnimatorStateInfo(0).IsName("Wait");
+            allowsAnimation = DoorOpenAnimation.GetCurrentAnimatorStateInfo(0).IsName("Wait");
             if (allowsAnimation)
             {
                 doorOpen = !doorOpen;
@@ -215,11 +216,11 @@ public class SelectionManager : MonoBehaviour
 
     public void BedInteraction()
     {
-        if (interaction_text.text == "Go to Bed" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused && !isInAnimation && !RoundsManager.Instance.isInBed && !isLightOn)
+        if (interaction_text.text == "Go to Bed" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused && !isInAnimation && !RoundsManager.Instance.isInBed && !isLightOn && !doorOpen)
         {
             isInAnimation = true;
+            Bed.GetComponent<BoxCollider>().enabled = false;
             roundsManager.StartNextRound();
-            //Bed.GetComponent<InteractableObject>().interactable = false;
         }
     }
     public void WindowWoodenPlanksRemover()

@@ -58,6 +58,7 @@ public class ItemConfirmation : MonoBehaviour
         FirstPersonMovement.Instance.isAllowed = true;
         SelectionManager.Instance.isInAnimation = false;
         PauseSystem.Instance.Crosshair.SetActive(true);
+        SelectionManager.Instance.Bed.GetComponent<BoxCollider>().enabled = true;
 
 
     }
