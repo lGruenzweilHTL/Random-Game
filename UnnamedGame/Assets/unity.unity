@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.002616261, g: 0.0020589642, b: 0.0007546643, a: 1}
+  m_IndirectSpecularColor: {r: 0.0026162623, g: 0.0020589675, b: 0.0007546681, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1723,7 +1723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7051,6 +7051,7 @@ MonoBehaviour:
   DoorKeys: {fileID: 2123912507}
   Bed: {fileID: 755683055}
   BedroomLight: {fileID: 1961854694}
+  allowsAnimation: 0
   isClipBoardOpen: 0
   isWindowCovered: 0
   KnifeGrabbed: 0
@@ -7059,6 +7060,7 @@ MonoBehaviour:
   isDoorKeyGrabbed: 0
   isLightOn: 1
   isInAnimation: 0
+  doorOpen: 0
 --- !u!1 &825227346 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7726862700073652533, guid: 9de2496e7a5f5ae41b543330ea8dab15, type: 3}
@@ -16305,6 +16307,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4094299684890063084, guid: f731d8d8c66db9b438b4f8a42a85b76f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4094299684890063084, guid: f731d8d8c66db9b438b4f8a42a85b76f, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
@@ -18414,8 +18420,8 @@ SceneRoots:
   - {fileID: 1187185385}
   - {fileID: 822297520}
   - {fileID: 1053553136}
-  - {fileID: 1932096081}
   - {fileID: 1969383881}
   - {fileID: 314100849950412152}
   - {fileID: 561215711}
   - {fileID: 82081148}
+  - {fileID: 1932096081}

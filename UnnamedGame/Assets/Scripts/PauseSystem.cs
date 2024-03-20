@@ -26,7 +26,7 @@ public class PauseSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !SelectionManager.Instance.isClipBoardOpen)
+        if (Input.GetKeyDown(KeyCode.Escape) && (SelectionManager.Instance == null || !SelectionManager.Instance.isClipBoardOpen))
         {
             TogglePause();
         }
@@ -36,7 +36,7 @@ public class PauseSystem : MonoBehaviour
     {
         Time.timeScale = 0f;
         PauseObject.SetActive(true);
-        Crosshair.SetActive(false);
+        if (Crosshair != null) Crosshair.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
 
         IsPaused = true;
@@ -46,7 +46,7 @@ public class PauseSystem : MonoBehaviour
         Time.timeScale = 1f;
         PauseObject.SetActive(false);
         SettingsPanel.SetActive(false);
-        Crosshair.SetActive(true);
+        if (Crosshair != null) Crosshair.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
 
         IsPaused = false;
