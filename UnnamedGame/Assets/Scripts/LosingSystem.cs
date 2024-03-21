@@ -19,7 +19,8 @@ public class LosingSystem : MonoBehaviour
     }
     public bool DidUserLockEverything()
     {
-        if (RoundsManager.Instance.roundIndex == 0)
+        // Round Indices are 1 and 2 instead of 0 and 1 because the RoundManager increments the index before this method is called
+        if (RoundsManager.Instance.roundIndex == 1)
         {
             if (SelectionManager.Instance.isWindowCovered && SelectionManager.Instance.isDoorLocked)
             {
@@ -28,7 +29,7 @@ public class LosingSystem : MonoBehaviour
             else
                 return false;
         }
-        else if (RoundsManager.Instance.roundIndex >= 1)
+        else if (RoundsManager.Instance.roundIndex >= 2)
         {
             if (SelectionManager.Instance.isWindowCovered && SelectionManager.Instance.isKnifeHidden && SelectionManager.Instance.isDoorLocked)
             {

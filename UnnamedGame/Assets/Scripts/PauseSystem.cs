@@ -26,7 +26,7 @@ public class PauseSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && (SelectionManager.Instance == null || !SelectionManager.Instance.isClipBoardOpen) && !SelectionManager.Instance.isInAnimation)
+        if (Input.GetKeyDown(KeyCode.Escape) && !SelectionManager.Instance.isClipBoardOpen && !SelectionManager.Instance.isInAnimation && !ItemConfirmation.Instance.confirmationActive)
         {
             TogglePause();
         }

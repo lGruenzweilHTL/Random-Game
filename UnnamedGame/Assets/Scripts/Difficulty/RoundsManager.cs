@@ -52,15 +52,9 @@ public class RoundsManager : MonoBehaviour
     {
         FirstPersonMovement.Instance.isAllowed = false;
 
-        ItemConfirmation.Instance.Robber.SetActive(true);
         await BedAnimation.AnimateToBed(playerVisuals, Camera.main.transform);
         isInBed = true;
 
-
-        /*
-        blackscreenFade.SetTrigger("StartFade");
-        await Task.Delay(2000); // wait for blackscreen finished
-        */
 
         if (++roundIndex >= rounds.Length)
         {
@@ -107,11 +101,8 @@ public class RoundsManager : MonoBehaviour
         }
         if (currentRound.clipboard != null) spawned.Add(Instantiate(currentRound.clipboard));
     }
-    private async void TriggerConfirmation()
+    private void TriggerConfirmation()
     {
-        var process = SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
-        while (!process.isDone) await Task.Yield(); // Wait for load
-
         Cursor.lockState = CursorLockMode.None;
 
         ItemConfirmation.Instance.Init(rounds[roundIndex - 1].knife != null);
@@ -119,7 +110,7 @@ public class RoundsManager : MonoBehaviour
 
     private void TriggerWin()
     {
-        lights = new Light[0]; // prevents cross-scene error
+        lights = new Light[0];
 
         TriggerConfirmation();
 

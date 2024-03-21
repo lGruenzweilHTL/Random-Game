@@ -1,25 +1,27 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using static RoundsManager;
+using UnityEngine.SceneManagement;
 
 public class ItemConfirmation : MonoBehaviour
 {
     public static ItemConfirmation Instance;
     public GameObject Robber;
     public Animator RobberAnimation;
+    [SerializeField] private Animator blackscreen;
     private bool won = false;
     private void Awake()
     {
         Instance = this;
     }
 
-    [SerializeField] private TMP_Text text;
+    [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private GameObject[] buttons;
     [SerializeField] private GameObject playerVisuals => GameObject.FindGameObjectWithTag("PlayerVisuals");
     private Queue<string> texts = new();
+
+    public bool confirmationActive => dialogueText.text != "";
 
     public void Init(bool knifeActive)
     {
@@ -27,13 +29,21 @@ public class ItemConfirmation : MonoBehaviour
         texts.Enqueue("Did you lock the door?");
         texts.Enqueue("Did you cover the window?");
         if (knifeActive) texts.Enqueue("Did you hide the knife?");
-        if (++RoundsManager.Instance.roundIndex >= RoundsManager.Instance.rounds.Length) texts.Enqueue("Congratulations... You won all rounds!"); won = true;
+        if (RoundsManager.Instance.roundIndex >= RoundsManager.Instance.rounds.Length)
+        {
+            texts.Enqueue("Congratulations... You won all rounds!");
+            won = true;
+        }
         StartNextDialogue();
     }
 
     public void StartNextDialogue() => Dialogue();
     private async void Dialogue()
     {
+        dialogueText.text = "";
+
+        foreach (var button in buttons) button.SetActive(false);
+
         if (texts.Count == 0 && !won)
         {
             if (LosingSystem.Instance.DidUserLockEverything())
@@ -47,20 +57,17 @@ public class ItemConfirmation : MonoBehaviour
             }
             return;
         }
-        else
+        else if (won)
         {
             //Blackscreen fading in
             //starting main menu
         }
 
-        string text = texts.Dequeue();          //--> Quene Empty?
-        this.text.text = "";
-
-        foreach (var button in buttons) button.SetActive(false);
+        string text = texts.Dequeue();
 
         foreach (char c in text)
         {
-            this.text.text += c;
+            dialogueText.text += c;
             await Task.Delay(1);
         }
 
@@ -69,7 +76,6 @@ public class ItemConfirmation : MonoBehaviour
     private async void CloseWinningScene()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(2);
 
         await BedAnimation.AnimateOutOfBed(playerVisuals, Camera.main.transform);
         RoundsManager.Instance.isInBed = false;
@@ -81,6 +87,7 @@ public class ItemConfirmation : MonoBehaviour
         SelectionManager.Instance.isDoorLocked = false;
         SelectionManager.Instance.isWindowCovered = false;
         SelectionManager.Instance.isKnifeHidden = false;
+        SelectionManager.Instance.isLightOn = true;
 
         foreach (Light l in RoundsManager.Instance.lights)
         {
@@ -90,11 +97,15 @@ public class ItemConfirmation : MonoBehaviour
     private async void CloseLosingScene()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        await Task.Delay(1);
-        Time.timeScale = 0.1f;
-        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(2);
+        Time.timeScale = 0.2f;
+        ItemConfirmation.Instance.Robber.SetActive(true);
         RobberAnimation.SetBool("start", true);
-        //während der Räuber rennt soll ein Blackscreen auftauchen
-        //nachdem der Animator ausgeführt wurde soll man im Main Screen landen also ganz am Anfang
+
+        await Task.Delay(3500);
+        blackscreen.SetTrigger("StartFade");
+
+        await Task.Delay(2000);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 }
