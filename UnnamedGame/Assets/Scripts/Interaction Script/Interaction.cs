@@ -11,7 +11,7 @@ public class SelectionManager : MonoBehaviour
     [SerializeField] private Animator windowAnimator;
     TMP_Text interaction_text;
     [SerializeField] private Animator blackscreenFade;
-    [SerializeField] private Animator DoorOpenAnimation;
+    [SerializeField] public Animator DoorOpenAnimation;
 
     public GameObject interaction_Info_UI;
     public GameObject ClipBoardText;
@@ -21,17 +21,19 @@ public class SelectionManager : MonoBehaviour
     public GameObject BoxWhereKnifeIsIn;
     public GameObject DoorKeys;
     public GameObject Bed;
+    public GameObject FlashlightOnDesk;
 
     public Light BedroomLight;
 
     public bool allowsAnimation = false;
     public bool isClipBoardOpen = false;
     public bool isWindowCovered = false;
-    public bool KnifeGrabbed = false;
-    public bool knifeisHidden = false;
-    public bool GoToBed = false;
+    public bool isKnifeGrabbed = false;
+    public bool isKnifeHidden = false;
     public bool isDoorKeyGrabbed = false;
+    public bool isDoorLocked = false;
     public bool isLightOn = true;
+    public bool isFlashlightGrabbed = false;
 
     public bool isInAnimation = false;
 
@@ -81,6 +83,7 @@ public class SelectionManager : MonoBehaviour
                     WindowInteraction();
                     IsLightOn();
                     IsLightOff();
+                    GrabFlashlight();
                 }
                 else
                     interaction_Info_UI.SetActive(false);
@@ -90,6 +93,15 @@ public class SelectionManager : MonoBehaviour
         }
     }
 
+    public void GrabFlashlight()
+    {
+        if (interaction_text.text == "Grab Flashlight" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
+        {
+            RoundsManager.Instance.flashlight.SetActive(true);
+            FlashlightOnDesk.SetActive(false);
+            isFlashlightGrabbed = true;
+        }
+    }
     public void ToggleDoorInteraction()
     {
         if (interaction_text.text is "Open door" or "Close door" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
@@ -104,7 +116,7 @@ public class SelectionManager : MonoBehaviour
     }
     public bool IsLightOn()
     {
-        if (interaction_text.text == "Light on" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused)
+        if (interaction_text.text == "Light on" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused && RoundsManager.Instance.isLightSwitchAllowed)
         {
             interaction_text.text = "Light off";
             LightSwichter();
@@ -117,7 +129,7 @@ public class SelectionManager : MonoBehaviour
 
     public bool IsLightOff()
     {
-        if (interaction_text.text == "Light off" && Input.GetKeyDown(KeyCode.R) && !PauseSystem.Instance.IsPaused)
+        if (interaction_text.text == "Light off" && Input.GetKeyDown(KeyCode.R) && !PauseSystem.Instance.IsPaused && RoundsManager.Instance.isLightSwitchAllowed)
         {
             interaction_text.text = "Light on";
             LightSwichter();
@@ -136,6 +148,7 @@ public class SelectionManager : MonoBehaviour
         if (interaction_text.text == "open" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused && isDoorKeyGrabbed)
         {
             interaction_text.text = "locked";
+            isDoorLocked = true;
             return true;
         }
         else
@@ -152,6 +165,7 @@ public class SelectionManager : MonoBehaviour
         if (interaction_text.text == "locked" && Input.GetKeyDown(KeyCode.R) && !PauseSystem.Instance.IsPaused && isDoorKeyGrabbed)
         {
             interaction_text.text = "open";
+            isDoorLocked = false;
             return false;
         }
 
@@ -196,19 +210,19 @@ public class SelectionManager : MonoBehaviour
         {
             knife_UI.SetActive(false);
             knife.SetActive(true);
-            KnifeGrabbed = true;
+            isKnifeGrabbed = true;
         }
-        if (KnifeGrabbed)
+        if (isKnifeGrabbed)
         {
             BoxWhereKnifeIsIn.GetComponent<InteractableObject>().interactable = true;
         }
-        if (interaction_text.text == "Put in Knife" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused && KnifeGrabbed)
+        if (interaction_text.text == "Put in Knife" && Input.GetKeyDown(KeyCode.E) && !PauseSystem.Instance.IsPaused && isKnifeGrabbed)
         {
             knife_UI.SetActive(true);
             knife_UI.transform.position = new Vector3(6.13506889f, 3.24399996f, 3.15181732f);
             knife.SetActive(false);
-            KnifeGrabbed = false;
-            knifeisHidden = true;
+            isKnifeGrabbed = false;
+            isKnifeHidden = true;
             knife_UI.GetComponent<InteractableObject>().interactable = false;
             BoxWhereKnifeIsIn.GetComponent<InteractableObject>().interactable = false;
         }
@@ -220,6 +234,10 @@ public class SelectionManager : MonoBehaviour
         {
             isInAnimation = true;
             Bed.GetComponent<BoxCollider>().enabled = false;
+            foreach (Light l in RoundsManager.Instance.lights) // enable all lights
+            {
+                l.GetComponent<Light>().intensity = 0.3f;
+            }
             roundsManager.StartNextRound();
         }
     }

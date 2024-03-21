@@ -35,12 +35,14 @@ public class RoundsManager : MonoBehaviour
     }
 
     public static RoundsManager Instance { get; private set; }
-    [SerializeField] private Round[] rounds;
-    [SerializeField] private Light[] lights;
-    [SerializeField] private GameObject flashlight;
+    [SerializeField] public Round[] rounds;
+    [SerializeField] public Light[] lights;
+    [SerializeField] public GameObject flashlight;
     [SerializeField] private Animator blackscreenFade;
     [SerializeField] private Transform player;
     [SerializeField] private GameObject playerVisuals;
+
+    public bool isLightSwitchAllowed = true;
 
     public int roundIndex = 0;
 
@@ -50,6 +52,7 @@ public class RoundsManager : MonoBehaviour
     {
         FirstPersonMovement.Instance.isAllowed = false;
 
+        ItemConfirmation.Instance.Robber.SetActive(true);
         await BedAnimation.AnimateToBed(playerVisuals, Camera.main.transform);
         isInBed = true;
 
@@ -78,7 +81,7 @@ public class RoundsManager : MonoBehaviour
         {
             foreach (Light l in lights) // enable all lights
             {
-                l.enabled = true;
+                l.GetComponent<Light>().intensity = 0.3f;
             }
             flashlight.SetActive(false); // disable flashlight
         }
@@ -86,9 +89,10 @@ public class RoundsManager : MonoBehaviour
         {
             foreach (Light l in lights) // disable all lights
             {
-                l.enabled = false;
+                l.GetComponent<Light>().intensity = 0.3f;
             }
-            flashlight.SetActive(true); // enable flashlight
+            SelectionManager.Instance.FlashlightOnDesk.SetActive(true);
+            isLightSwitchAllowed = false;
         }
 
         TriggerConfirmation();
