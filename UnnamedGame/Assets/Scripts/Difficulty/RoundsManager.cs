@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,15 +7,16 @@ public class RoundsManager : MonoBehaviour
     [System.Serializable]
     public struct Round
     {
-        public GameObject clipboard;
-        public GameObject knife;
+        public Vector3[] clipboardSpawns;
+        public Vector3[] knifeSpawns;
+        public Vector3[] doorKeySpawns;
         public bool LightsOn;
     }
 
     public bool isInBed = false;
     private void Start()
     {
-        SpawnItems(rounds[0]);
+        SpawnItems(rounds[roundIndex]);
     }
 
     //Instance
@@ -45,6 +43,11 @@ public class RoundsManager : MonoBehaviour
     public bool isLightSwitchAllowed = true;
 
     public int roundIndex = 0;
+
+    [Header("Spawnables")]
+    [SerializeField] private GameObject clipboard;
+    [SerializeField] private GameObject knife;
+    [SerializeField] private GameObject doorKey;
 
     private List<GameObject> spawned = new();
 
@@ -93,19 +96,27 @@ public class RoundsManager : MonoBehaviour
     }
     private void SpawnItems(Round currentRound)
     {
-        if (currentRound.knife != null)
+        if (currentRound.knifeSpawns.Length > 0)
         {
-            GameObject knife = Instantiate(currentRound.knife);
+            GameObject knife = Instantiate(this.knife, ChooseRandomPoint(currentRound.knifeSpawns), this.knife.transform.rotation);
             spawned.Add(knife);
             SelectionManager.Instance.knife_UI = knife;
         }
-        if (currentRound.clipboard != null) spawned.Add(Instantiate(currentRound.clipboard));
+        if (currentRound.clipboardSpawns.Length > 0) 
+            spawned.Add(Instantiate(clipboard, ChooseRandomPoint(currentRound.clipboardSpawns), clipboard.transform.rotation));
+
+        if (currentRound.doorKeySpawns.Length > 0)
+        {
+            GameObject key = Instantiate(doorKey, ChooseRandomPoint(currentRound.doorKeySpawns), doorKey.transform.rotation);
+            spawned.Add(key);
+            SelectionManager.Instance.DoorKeys = key;
+        }
     }
     private void TriggerConfirmation()
     {
         Cursor.lockState = CursorLockMode.None;
 
-        ItemConfirmation.Instance.Init(rounds[roundIndex - 1].knife != null);
+        ItemConfirmation.Instance.Init(rounds[roundIndex - 1].knifeSpawns.Length > 0);
     }
 
     private void TriggerWin()
@@ -116,5 +127,11 @@ public class RoundsManager : MonoBehaviour
 
         Debug.Log("YOU WIN");
         SceneManager.LoadScene(0);
+    }
+
+    private Vector3 ChooseRandomPoint(Vector3[] lookup)
+    {
+        var random = Random.Range(0, lookup.Length);
+        return lookup[random];
     }
 }
